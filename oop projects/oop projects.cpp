@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include "clsPerson.h"
 #include "clsBankClient.h"
 #include "clsInputValidate.h"
@@ -23,7 +24,11 @@ void ReadClientInfo(clsBankClient& Client)
     cout << "\nEnter Account Balance: ";
     Client.AccountBalance = clsInputValidate::ReadFlNumber();
 }
-
+void PrintClients(vector <clsBankClient> vClients) {
+    for (clsBankClient& C : vClients) {
+        cout << setw(15) << C.FirstName << setw(15) << C.LastName << setw(25) << C.Email << setw(15) << C.Phone << setw(15) << C.AccountNumber() << setw(15) << C.PinCode << setw(15) << C.AccountBalance << endl;
+    }
+}
 void AddNewClient()
 {
     string AccountNumber = "";
@@ -111,11 +116,20 @@ void DeleteClient() {
     }
 
 }
+void ShowClientList() {
+    vector <clsBankClient> vClients = clsBankClient::GetClientsList();
+    cout << "\t\t\t\t\t\t Client List"<<"("<<vClients.size()<<")"<<"Client"<<endl;
+    cout << "------------------------------------------------------------------------------------------------------------------------\n";
+    cout << setw(15) << "FirstName" << setw(15) << "LastName" << setw(25) << "Email" << setw(15) << "Phone" << setw(15) << "Acc. Number" << setw(15) << "PinCode" << setw(15) << "Balance" << endl;
+    cout << "------------------------------------------------------------------------------------------------------------------------\n";
+    PrintClients(vClients);
+    cout << "------------------------------------------------------------------------------------------------------------------------\n";
+}
 
 int main()
 {
-
-    DeleteClient();
+    ShowClientList();
+    
     system("pause>0");
     return 0;
 }

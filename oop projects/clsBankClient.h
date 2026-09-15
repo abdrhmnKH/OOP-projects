@@ -169,7 +169,12 @@ private:
     }
 
 public:
+    static  vector <clsBankClient> GetClientsList()
+    {
 
+        return _LoadClientsDataFromFile();
+        
+    }
 
     clsBankClient(enMode Mode, string FirstName, string LastName,
         string Email, string Phone, string AccountNumber, string PinCode,
