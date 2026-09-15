@@ -4,6 +4,7 @@
 #include "clsBankClient.h"
 #include "clsInputValidate.h"
 #include "clsUtil.h"
+#include "clsMainScreen.h"
 
 void ReadClientInfo(clsBankClient& Client)
 {
@@ -141,7 +142,7 @@ void ShowTotBalance() {
 
 int main()
 {
-   ShowTotBalance();
+    clsMainScreen::ShowMainMenu();
     system("pause>0");
     return 0;
 }
