@@ -237,7 +237,12 @@ public:
         cout << "\n___________________\n";
 
     }
-
+    static float TotalBalances(vector <clsBankClient> vClients) {
+        float TotBalance = 0;
+        for (clsBankClient& C : vClients)
+            TotBalance += C.AccountBalance;
+        return TotBalance;
+    }
     static clsBankClient Find(string AccountNumber)
     {
 
