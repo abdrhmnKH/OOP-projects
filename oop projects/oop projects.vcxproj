@@ -152,6 +152,7 @@
     <ClInclude Include="clsPerson.h" />
     <ClInclude Include="clsScreen.h" />
     <ClInclude Include="clsString.h" />
+    <ClInclude Include="clsUpdateClient.h" />
     <ClInclude Include="clsUtil.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
