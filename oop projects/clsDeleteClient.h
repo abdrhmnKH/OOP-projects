@@ -9,6 +9,7 @@ class clsDeleteClient : protected clsScreen
 private :
     static void _PrintDeleteClient(clsBankClient & Client)
     {
+
         cout << "\nClient Card:";
         cout << "\n___________________";
         cout << "\nFirstName   : " << Client.FirstName;
@@ -27,7 +28,6 @@ public :
         string Title = "Delete Client.";
         _DrawScreenHeader(Title);
         string AccountNumber = "";
-
         cout << "\nPlease Enter Account Number: ";
         AccountNumber = clsInputValidate::ReadString();
         while (!clsBankClient::IsClientExist(AccountNumber))
