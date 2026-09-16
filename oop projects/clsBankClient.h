@@ -11,12 +11,12 @@ class clsBankClient : public clsPerson
 {
 private:
 
-    enum enMode { EmptyMode = 0, UpdateMode = 1, AddNewMode = 2 ,DeleteMode=3};
+    enum enMode { EmptyMode = 0, UpdateMode = 1, AddNewMode = 2, DeleteMode = 3 };
     enMode _Mode;
     string _AccountNumber;
     string _PinCode;
     float _AccountBalance;
-
+    bool _MarkForDelete=false;
 
     static clsBankClient _ConvertLinetoClientObject(string Line, string Seperator = "#//#")
     {
@@ -87,9 +87,10 @@ private:
 
             for (clsBankClient C : vClients)
             {
-                DataLine = _ConverClientObjectToLine(C);
-                if(DataLine!="")
-                MyFile << DataLine << endl;
+                if (C._MarkForDelete==false) {
+                    DataLine = _ConverClientObjectToLine(C);
+                    MyFile << DataLine << endl;
+                }
 
             }
 
@@ -147,7 +148,7 @@ private:
         if (MyFile.is_open())
         {
 
-            for (clsBankClient & C : vClients)
+            for (clsBankClient& C : vClients)
             {
                 DataLine = _ConverClientObjectToLine(C);
                 if (stDataLine == DataLine)
@@ -160,7 +161,7 @@ private:
         }
 
     }
-    void _Delete(){
+    void _Delete() {
         _DeleteDataLineFromFile(_ConverClientObjectToLine(*this));
     }
     static clsBankClient _GetEmptyClientObject()
@@ -169,11 +170,34 @@ private:
     }
 
 public:
+    bool Delete()
+    {
+        vector <clsBankClient> _vClients;
+        _vClients = _LoadClientsDataFromFile();
+
+        for (clsBankClient& C : _vClients)
+        {
+            if (C.AccountNumber() == _AccountNumber)
+            {
+                C._MarkForDelete = true;
+                break;
+            }
+
+        }
+
+        _SaveCleintsDataToFile(_vClients);
+
+        *this = _GetEmptyClientObject();
+
+        return true;
+
+    }
+
     static  vector <clsBankClient> GetClientsList()
     {
 
         return _LoadClientsDataFromFile();
-        
+
     }
 
     clsBankClient(enMode Mode, string FirstName, string LastName,
@@ -299,7 +323,7 @@ public:
         return _GetEmptyClientObject();
     }
 
-    enum enSaveResults { svFaildEmptyObject = 0, svSucceeded = 1, svFaildAccountNumberExists = 2 , svDelete=3};
+    enum enSaveResults { svFaildEmptyObject = 0, svSucceeded = 1, svFaildAccountNumberExists = 2, svDelete = 3 };
 
 
     enSaveResults Save()
@@ -354,7 +378,7 @@ public:
 
 
         }
-    }
+        }
     }
 
     static bool IsClientExist(string AccountNumber)
@@ -374,4 +398,3 @@ public:
     }
 
 };
-

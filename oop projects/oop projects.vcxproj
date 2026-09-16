@@ -142,9 +142,11 @@
     <ClCompile Include="oop projects.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="clsAddNewClient.h" />
     <ClInclude Include="clsBankClient.h" />
     <ClInclude Include="clsClientListScreen.h" />
     <ClInclude Include="clsDate.h" />
+    <ClInclude Include="clsDeleteClient.h" />
     <ClInclude Include="clsInputValidate.h" />
     <ClInclude Include="clsMainScreen.h" />
     <ClInclude Include="clsPerson.h" />
