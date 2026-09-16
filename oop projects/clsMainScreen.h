@@ -4,15 +4,17 @@
 #include "clsScreen.h"
 #include "clsInputValidate.h"
 #include "clsClientListScreen.h"
+#include "clsAddNewClient.h"
+#include "clsDeleteClient.h"
 using namespace std;
-class clsMainScreen : protected clsScreen 
+class clsMainScreen : protected clsScreen
 {
-private :
+private:
 	enum enMainMenuOption {
 		enListClient = 1, enAddNewClient = 2, enDeleteClient = 3, enUpdateClient = 4, enFindClient = 5, enTransaction = 6, enManageUsers = 7, enLogOut = 8
 	};
 	static short _ReadMainMenuOption() {
-		cout<<"\t\t\t\t\tChoose what do you want to do ? ";
+		cout << "\t\t\t\t\tChoose what do you want to do ? ";
 		short choice = clsInputValidate::ReadIntNumberBetween(1, 8);
 		return choice;
 	}
@@ -27,13 +29,13 @@ private :
 		clsClientListScreen::ShowClientList();
 	}
 	static void _AddNewClientScreen() {
-		cout << "\n Add new client screen will be here\n";
+		clsAddNewClient::AddNewClient();
 	}
 	static void _DeleteClientScreen() {
-		cout << "\n Delete Client screen will be here\n";
+		clsDeleteClient::DeleteClient();
 	}
 	static void _UpdateClientScreen() {
-		cout << "\n Update Client screen will be here\n";
+		cout << "Update Client Screen Will be here\n";
 	}
 	static void _FindClientScreen() {
 		cout << "\n Find Client screen will be here\n";
@@ -49,57 +51,57 @@ private :
 	}
 	static void _PerformMainManuOption(enMainMenuOption MainMenuOption) {
 		switch (MainMenuOption) {
-			case enMainMenuOption::enListClient :{
-				system("cls");
-				_ShowAllClientsScreen();
-				_GoBackToMainMenu();
-				break;
-			}
-			case enMainMenuOption::enAddNewClient: {
-				system("cls");
-				_AddNewClientScreen();
-				_GoBackToMainMenu();
-				break;
-			}
-			case enMainMenuOption::enDeleteClient: {
-				system("cls");
-				_DeleteClientScreen();
-				_GoBackToMainMenu();
-				break;
-			}
-			case enMainMenuOption::enUpdateClient: {
-				system("cls");
-				_UpdateClientScreen();
-				_GoBackToMainMenu();
-				break;
-			}
-			case enMainMenuOption::enFindClient: {
-				system("cls");
-				_FindClientScreen();
-				_GoBackToMainMenu();
-				break;
-			}
-			case enMainMenuOption::enTransaction: {
-				system("cls");
-				_TransactionScreen();
-				_GoBackToMainMenu();
-				break;
-			}
-			case enMainMenuOption::enManageUsers: {
-				system("cls");
-				_ManageUsersScreen();
-				_GoBackToMainMenu();
-				break;
-			}
-			case enMainMenuOption::enLogOut: {
-				system("cls");
-				_LogOutScreen();
-				_GoBackToMainMenu();
-				break;
-			}
+		case enMainMenuOption::enListClient: {
+			system("cls");
+			_ShowAllClientsScreen();
+			_GoBackToMainMenu();
+			break;
+		}
+		case enMainMenuOption::enAddNewClient: {
+			system("cls");
+			_AddNewClientScreen();
+			_GoBackToMainMenu();
+			break;
+		}
+		case enMainMenuOption::enDeleteClient: {
+			system("cls");
+			_DeleteClientScreen();
+			_GoBackToMainMenu();
+			break;
+		}
+		case enMainMenuOption::enUpdateClient: {
+			system("cls");
+			_UpdateClientScreen();
+			_GoBackToMainMenu();
+			break;
+		}
+		case enMainMenuOption::enFindClient: {
+			system("cls");
+			_FindClientScreen();
+			_GoBackToMainMenu();
+			break;
+		}
+		case enMainMenuOption::enTransaction: {
+			system("cls");
+			_TransactionScreen();
+			_GoBackToMainMenu();
+			break;
+		}
+		case enMainMenuOption::enManageUsers: {
+			system("cls");
+			_ManageUsersScreen();
+			_GoBackToMainMenu();
+			break;
+		}
+		case enMainMenuOption::enLogOut: {
+			system("cls");
+			_LogOutScreen();
+			_GoBackToMainMenu();
+			break;
+		}
 		}
 	}
-public :
+public:
 	static void ShowMainMenu() {
 		system("cls");
 		_DrawScreenHeader("\t\tMain Screen");
@@ -118,4 +120,3 @@ public :
 		_PerformMainManuOption((enMainMenuOption)_ReadMainMenuOption());
 	}
 };
-

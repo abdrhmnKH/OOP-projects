@@ -120,7 +120,7 @@ void DeleteClient() {
 }
 void ShowClientList() {
     vector <clsBankClient> vClients = clsBankClient::GetClientsList();
-    cout << "\t\t\t\t\t\t Client List"<<"("<<vClients.size()<<")"<<"Client(s)."<<endl;
+    cout << "\t\t\t\t\t\t Client List" << "(" << vClients.size() << ")" << "Client(s)." << endl;
     cout << "------------------------------------------------------------------------------------------------------------------------\n";
     cout << setw(15) << "FirstName" << setw(15) << "LastName" << setw(25) << "Email" << setw(15) << "Phone" << setw(15) << "Acc. Number" << setw(15) << "PinCode" << setw(15) << "Balance" << endl;
     cout << "------------------------------------------------------------------------------------------------------------------------\n";
@@ -131,9 +131,9 @@ void ShowTotBalance() {
     vector <clsBankClient> vClients = clsBankClient::GetClientsList();
     cout << "\t\t\t\t\t\t Balance List" << "(" << vClients.size() << ")" << "Client(s)." << endl;
     cout << "------------------------------------------------------------------------------------------------------------------------\n";
-    cout << setw(15) <<"Acc. Number" << setw(40) <<"Client Name" << setw(20) << "Balance" << endl;
+    cout << setw(15) << "Acc. Number" << setw(40) << "Client Name" << setw(20) << "Balance" << endl;
     for (clsBankClient& C : vClients) {
-        cout <<setw(15) << C.AccountNumber() << setw(40) << C.FullName() << setw(20) << C.AccountBalance << endl;
+        cout << setw(15) << C.AccountNumber() << setw(40) << C.FullName() << setw(20) << C.AccountBalance << endl;
     }
     cout << "------------------------------------------------------------------------------------------------------------------------\n";
     cout << "\t\t\t\t\t\t Total Balances = " << clsBankClient::TotalBalances(vClients) << endl;
