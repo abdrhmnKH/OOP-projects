@@ -267,6 +267,14 @@ public:
             TotBalance += C.AccountBalance;
         return TotBalance;
     }
+    void Deposit(float Amount) {
+        _AccountBalance += Amount;
+        Save();
+    }
+    void Withdraw(float Amount) {
+        _AccountBalance -= Amount;
+        Save();
+    }
     static clsBankClient Find(string AccountNumber)
     {
 
