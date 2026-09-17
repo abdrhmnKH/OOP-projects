@@ -7,6 +7,7 @@
 #include "clsBankClient.h"
 #include "clsDepositScreen.h"
 #include "clsWithdrawScreen.h"
+#include "clsShowTotalBalancesScreen.h"
 using namespace std;
 class clsTransactionScreen : protected clsScreen
 {
@@ -16,13 +17,6 @@ private :
 		short choice = clsInputValidate::ReadIntNumberBetween(1, 4);
 		return choice;
 	}
-	static  void _GoBackToMainMenu()
-	{
-		cout << setw(37) << left << "" << "\n\tPress any key to go back to Main Menue...\n";
-
-		system("pause>0");
-		clsMainScreen::ShowMainMenu();
-	}
 	static void _ShowDepositScreen() {
 		clsDepositScreen::ShowDepositScreen();
 	}
@@ -30,7 +24,7 @@ private :
 		clsWithdrawScreen::ShowWithDrawScreen();
 	}
 	static void _ShowTotalBalanceScreen() {
-		cout << "\Withdraw Screen will be here.\n";
+		clsShowTotalBalancesScreen::ShowTotalBalanceScreen();
 	}
 	enum enTransactionMenuOption {enDeposit=1,enWithdraw=2,enTotalBalances=3,enMainMenu=4};
 	static void _PerformMainManuOption(enTransactionMenuOption TransactionOption) {
@@ -47,8 +41,7 @@ private :
 		}
 		case enTransactionMenuOption::enTotalBalances: {
 			system("cls");
-			vector <clsBankClient> vClients = clsBankClient::GetClientsList();
-			cout<<"\tTotal Balances of Clients = "<<clsBankClient::TotalBalances(vClients);
+			_ShowTotalBalanceScreen();
 			break;
 		}
 		case enTransactionMenuOption::enMainMenu: {
