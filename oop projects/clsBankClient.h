@@ -271,9 +271,14 @@ public:
         _AccountBalance += Amount;
         Save();
     }
-    void Withdraw(float Amount) {
-        _AccountBalance -= Amount;
-        Save();
+    bool Withdraw(float Amount) {
+        if (Amount > _AccountBalance) {
+            return false;
+        }
+        else {
+            _AccountBalance -= Amount;
+            Save();
+        }
     }
     static clsBankClient Find(string AccountNumber)
     {
