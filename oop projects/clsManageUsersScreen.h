@@ -4,6 +4,8 @@
 #include "clsScreen.h"
 #include "clsInputValidate.h"
 #include "clsMainScreen.h"
+#include "clsUsersListScreen.h"
+#include "clsAddNewUser.h"
 class clsManageUsersScreen : protected clsScreen
 {
 private :
@@ -13,10 +15,10 @@ private :
 		return choice;
 	}
 	static void _ShowListUsersScreen() {
-		cout << "\nShow List Users Screen will be here\n";
+		clsUsersListScreen::ShowUsersList();
 	}
 	static void _AddNewUserScreen() {
-		cout << "\nAdd New User Screen will be here\n";
+		clsAddNewUser::AddNewUser();
 	}
 	static void _DeleteUserScreen() {
 		cout << "\nDelete User Screen will be here\n";

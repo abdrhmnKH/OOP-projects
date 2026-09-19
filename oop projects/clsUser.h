@@ -264,6 +264,9 @@ public :
     void _Delete() {
         _DeleteDataLineFromFile(_ConverUserObjectToLine(*this));
     }
+    static clsUser GetAddNewUserObject(string UserName) {
+        return clsUser(enMode::AddNewMode, "", "", "", "", UserName, "",0);
+    }
     enum enSaveResults { svFaildEmptyObject = 0, svSucceeded = 1, svFaildAccountNumberExists = 2, svDelete = 3 };
     enSaveResults Save()
     {
