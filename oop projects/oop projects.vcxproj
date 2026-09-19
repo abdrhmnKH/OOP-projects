@@ -148,8 +148,10 @@
     <ClInclude Include="clsClientListScreen.h" />
     <ClInclude Include="clsDate.h" />
     <ClInclude Include="clsDeleteClient.h" />
+    <ClInclude Include="clsDeleteUser.h" />
     <ClInclude Include="clsDepositScreen.h" />
     <ClInclude Include="clsFindClientScreen.h" />
+    <ClInclude Include="clsFindUserScreen.h" />
     <ClInclude Include="clsInputValidate.h" />
     <ClInclude Include="clsMainScreen.h" />
     <ClInclude Include="clsManageUsersScreen.h" />
@@ -159,6 +161,7 @@
     <ClInclude Include="clsString.h" />
     <ClInclude Include="clsTransactionScreen.h" />
     <ClInclude Include="clsUpdateClient.h" />
+    <ClInclude Include="clsUpdateUserScreen.h" />
     <ClInclude Include="clsUser.h" />
     <ClInclude Include="clsUsersListScreen.h" />
     <ClInclude Include="clsUtil.h" />

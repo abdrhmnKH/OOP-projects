@@ -32,7 +32,7 @@ public :
         AccountNumber = clsInputValidate::ReadString();
         while (!clsBankClient::IsClientExist(AccountNumber))
         {
-            cout << "\nAccount Number Is Already Used, Choose another one: ";
+            cout << "\nAccount Number Is Not Found, Choose another one: ";
             AccountNumber = clsInputValidate::ReadString();
         }
         clsBankClient DeleteClient = clsBankClient::Find(AccountNumber);

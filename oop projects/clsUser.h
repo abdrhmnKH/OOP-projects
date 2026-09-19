@@ -221,6 +221,28 @@ public :
         clsUser User1 = clsUser::Find(UserName);
         return (!User1.IsEmpty());
     }
+    bool Delete()
+    {
+        vector <clsUser> _vUsers;
+        _vUsers = _LoadUsersDataFromFile();
+
+        for (clsUser& U : _vUsers)
+        {
+            if (U.UserName == _UserName)
+            {
+                U._MarkedForDelete = true;
+                break;
+            }
+
+        }
+
+        _SaveUsersDataToFile(_vUsers);
+
+        *this = _GetEmptyUserObject();
+
+        return true;
+
+    }
     void _AddDataLineToFile(string  stDataLine)
     {
         fstream MyFile;
