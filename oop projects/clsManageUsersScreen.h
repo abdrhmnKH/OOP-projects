@@ -6,6 +6,9 @@
 #include "clsMainScreen.h"
 #include "clsUsersListScreen.h"
 #include "clsAddNewUser.h"
+#include "clsDeleteUser.h"
+#include "clsUpdateUserScreen.h"
+#include "clsFindUserScreen.h"
 class clsManageUsersScreen : protected clsScreen
 {
 private :
@@ -21,13 +24,13 @@ private :
 		clsAddNewUser::AddNewUser();
 	}
 	static void _DeleteUserScreen() {
-		cout << "\nDelete User Screen will be here\n";
+		clsDeleteUser::DeleteUser();
 	}
 	static void _UpdateUserScreen() {
-		cout << "\nUpdate User Screen will be here\n";
+		clsUpdateUserScreen::UpdateUser();
 	}
 	static void _FindUserScreen() {
-		cout << "\nFind User Screen will be here\n";
+		clsFindUserScreen::FindUserScreen();
 	}
 	static void _MainMenuUserScreen() {
 		cout << "\nMain Menu Screen will be here\n";

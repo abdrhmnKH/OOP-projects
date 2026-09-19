@@ -10,6 +10,7 @@
 #include "clsFindClientScreen.h"
 #include "clsTransactionScreen.h"
 #include "clsManageUsersScreen.h"
+#include "clsFindUserScreen.h"
 using namespace std;
 class clsMainScreen : protected clsScreen
 {
