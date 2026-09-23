@@ -13,7 +13,8 @@ private :
         prUpdateClient = 8,
         prFindClient = 16,
         prTransaction = 32,
-        prManageUsers = 64
+        prManageUsers = 64,
+        prShowLoginRegister=128
     };
     static int _ReadPermissions() {
         int permissions = 0;
@@ -58,6 +59,11 @@ private :
         cin >> answer;
         if (answer == 'y' || answer == 'Y') {
             permissions |= _enPermissions::prManageUsers;
+        }
+        cout << "\Show Login Register ? y/n? ";
+        cin >> answer;
+        if (answer == 'y' || answer == 'Y') {
+            permissions |= _enPermissions::prShowLoginRegister;
         }
         return permissions;
     }
