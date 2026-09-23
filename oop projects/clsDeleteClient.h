@@ -30,6 +30,7 @@ public :
        }
         string Title = "Delete Client.";
         _DrawScreenHeader(Title);
+        UserAndDate();
         string AccountNumber = "";
         cout << "\nPlease Enter Account Number: ";
         AccountNumber = clsInputValidate::ReadString();

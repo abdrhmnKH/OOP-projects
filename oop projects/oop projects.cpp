@@ -10,7 +10,9 @@
 int main()
 {
     while (true) {
-        clsLogin::ShowLoginScreen();
+
+        if (!clsLogin::ShowLoginScreen())
+            break;
     }
     system("pause>0");
     return 0;

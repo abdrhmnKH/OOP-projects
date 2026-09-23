@@ -27,6 +27,7 @@ public :
     static void DeleteUser() {
         string Title = "\tDelete User Screen.";
         _DrawScreenHeader(Title);
+        UserAndDate();
         string UserName = "";
         cout << "\nPlease Enter UserName: ";
         UserName = clsInputValidate::ReadString();

@@ -17,10 +17,12 @@ public :
         if (!CheckAccessRights(clsUser::_enPermissions::prShowClientsList)) {
             return;
         }
+        UserAndDate();
         vector <clsBankClient> vClients = clsBankClient::GetClientsList();
         string Title = "Clients List Screen";
         string subtitle = "(" + to_string(vClients.size()) + ")" + " Clients.";
         _DrawScreenHeader(Title,subtitle);
+        UserAndDate();
         cout << "------------------------------------------------------------------------------------------------------------------------\n";
         cout << setw(15) << "FirstName" << setw(15) << "LastName" << setw(25) << "Email" << setw(15) << "Phone" << setw(15) << "Acc. Number" << setw(15) << "PinCode" << setw(15) << "Balance" << endl;
         cout << "------------------------------------------------------------------------------------------------------------------------\n";

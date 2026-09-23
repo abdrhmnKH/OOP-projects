@@ -24,6 +24,7 @@ public :
         string Title = "\t Users List Screen";
         string subtitle = "(" + to_string(vUsers.size()) + ")" + " User(s).";
         _DrawScreenHeader(Title, subtitle);
+        UserAndDate();
         cout << setw(8) << left << "" << "\n\t_______________________________________________________";
         cout << "______________________________________________\n" << endl;
 

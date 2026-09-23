@@ -48,6 +48,7 @@ public :
         }
         string Title = "Update Client.";
         _DrawScreenHeader(Title);
+        UserAndDate();
         string AccountNumber = "";
         cout << "\n Please Enter Client Account Number\n";
         AccountNumber = clsInputValidate::ReadString();

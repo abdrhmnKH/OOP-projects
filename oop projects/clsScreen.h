@@ -3,6 +3,7 @@
 #include"clsUser.h"
 #include <iomanip>
 #include "Global.h"
+#include "clsDate.h"
 using namespace std;
 class clsScreen
 {
@@ -26,6 +27,11 @@ protected :
             }
             else
                 return true;
+        }
+        static void UserAndDate() {
+            cout << "\t\t\t\t\t\t\tUser :" << CurrentUser.UserName;
+            cout << "\n\t\t\t\t\t\t\tDate :" <<clsDate::GetSystemDate()<<"\n";
+
         }
 };
 

@@ -11,17 +11,18 @@
 #include "clsTransactionScreen.h"
 #include "clsManageUsersScreen.h"
 #include "clsFindUserScreen.h"
+#include "clsShowLoginRegisterScreen.h"
 #include "Global.h"
 using namespace std;
 class clsMainScreen : protected clsScreen
 {
 private:
 	enum enMainMenuOption {
-		enListClient = 1, enAddNewClient = 2, enDeleteClient = 3, enUpdateClient = 4, enFindClient = 5, enTransaction = 6, enManageUsers = 7, enLogOut = 8
+		enListClient = 1, enAddNewClient = 2, enDeleteClient = 3, enUpdateClient = 4, enFindClient = 5, enTransaction = 6, enManageUsers = 7,enLoginRegister=8 ,enLogOut = 9
 	};
 	static short _ReadMainMenuOption() {
 		cout << "\t\t\t\t\tChoose what do you want to do ? ";
-		short choice = clsInputValidate::ReadIntNumberBetween(1, 8);
+		short choice = clsInputValidate::ReadIntNumberBetween(1, 9);
 		return choice;
 	}
 	static  void _GoBackToMainMenu()
@@ -54,6 +55,9 @@ private:
 	}
 	static void _LogOut() {
 		CurrentUser = clsUser::Find("", "");
+	}
+	static void _LoginRegister() {
+		clsShowLoginRegisterScreen::ShowLoginRegisterList();
 	}
 	static void _PerformMainManuOption(enMainMenuOption MainMenuOption) {
 		switch (MainMenuOption) {
@@ -99,6 +103,12 @@ private:
 			_GoBackToMainMenu();
 			break;
 		}
+		case enMainMenuOption::enLoginRegister: {
+			system("cls");
+			_LoginRegister();
+			_GoBackToMainMenu();
+			break;
+		}
 		case enMainMenuOption::enLogOut: {
 			system("cls");
 			_LogOut();
@@ -113,6 +123,8 @@ public:
 		cout << setw(37) << left << "" << "========================================================\n";
 		cout << setw(37) << left << "" << "\t\t\tMain Menu\n";
 		cout << setw(37) << left << "" << "========================================================\n";
+		UserAndDate();
+		cout << setw(37) << left << "" << "--------------------------------------------------------\n";
 		cout << setw(37) << left << "" << "\t[1] Show Client List.\n";
 		cout << setw(37) << left << "" << "\t[2] Add New Client.\n";
 		cout << setw(37) << left << "" << "\t[3] Delete Client.\n";
@@ -120,7 +132,8 @@ public:
 		cout << setw(37) << left << "" << "\t[5] Find Client.\n";
 		cout << setw(37) << left << "" << "\t[6] Transaction.\n";
 		cout << setw(37) << left << "" << "\t[7] Manage Users.\n";
-		cout << setw(37) << left << "" << "\t[8] Logout.\n";
+		cout << setw(37) << left << "" << "\t[8] Login Register.\n";
+		cout << setw(37) << left << "" << "\t[9] Logout.\n";
 		cout << setw(37) << left << "" << "========================================================\n";
 		_PerformMainManuOption((enMainMenuOption)_ReadMainMenuOption());
 	}

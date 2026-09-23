@@ -26,6 +26,7 @@ public :
         string Title = "\tFind User Screen";
         string UserName = "";
         _DrawScreenHeader(Title);
+        UserAndDate();
         cout << "\nPlease Enter UserName\n";
         UserName = clsInputValidate::ReadString();
         while (!clsUser::IsUserExist(UserName)) {

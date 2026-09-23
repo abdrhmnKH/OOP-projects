@@ -110,8 +110,26 @@ private :
 
         _SaveUsersDataToFile(_vUsers);
     }
+    struct stLoginRegisterRecord;
+    static stLoginRegisterRecord  _ConvertLoginRegisterLineToRecord(string Line, string Seperator = "#//#")
+    {
+        stLoginRegisterRecord LoginRegisterRecord;
 
+
+        vector <string> LoginRegisterDataLine = clsString::SplitString(Line, Seperator);
+        LoginRegisterRecord.DateTime = LoginRegisterDataLine[0];
+        LoginRegisterRecord.UserName = LoginRegisterDataLine[1];
+        LoginRegisterRecord.Password = LoginRegisterDataLine[2];
+        LoginRegisterRecord.Permissions = stoi(LoginRegisterDataLine[3]);
+
+        return LoginRegisterRecord;
+
+    }
 public :
+    struct stLoginRegisterRecord {
+        string DateTime, UserName, Password;
+        int Permissions;
+    };
     clsUser(enMode Mode, string FirstName, string LastName, string Email, string Phone, string UserName, string Password, int Permissions)
         :clsPerson(FirstName, LastName, Email, Phone) {
         _Mode = Mode;
@@ -348,6 +366,34 @@ public :
     static vector <clsUser> GetUsersList() {
         return _LoadUsersDataFromFile();
     }
+    static vector <stLoginRegisterRecord> GetLoginRegisterUsersList() {
+        vector <stLoginRegisterRecord> vLoginRegisterRecord;
+
+        fstream MyFile;
+        MyFile.open("LoginRegister.txt", ios::in);//read Mode
+
+        if (MyFile.is_open())
+        {
+
+            string Line;
+
+            stLoginRegisterRecord LoginRegisterRecord;
+
+            while (getline(MyFile, Line))
+            {
+
+                LoginRegisterRecord = _ConvertLoginRegisterLineToRecord(Line);
+
+                vLoginRegisterRecord.push_back(LoginRegisterRecord);
+
+            }
+
+            MyFile.close();
+
+        }
+
+        return vLoginRegisterRecord;
+    }
     static enum _enPermissions {
         prAllPermissions=-1,
         prShowClientsList = 1, prAddNewClient = 2,
@@ -355,7 +401,8 @@ public :
         prUpdateClient = 8,
         prFindClient = 16,
         prTransaction = 32,
-        prManageUsers = 64
+        prManageUsers = 64,
+        prLoginRegisterList=128
     };
     bool CheckUserPermission(_enPermissions Permission) {
         if (this->Permissions== _enPermissions::prAllPermissions)
@@ -364,6 +411,32 @@ public :
             return true;
         else
             return false;
+    }
+    string _PrepareLogInRecord(string Seperator = "#//#")
+    {
+        string LoginRecord = "";
+        LoginRecord += clsDate::GetSystemDateTimeString() + Seperator;
+        LoginRecord += UserName + Seperator;
+        LoginRecord += Password + Seperator;
+        LoginRecord += to_string(Permissions);
+        return LoginRecord;
+    }
+    void RegisterLogIn()
+    {
+
+        string stDataLine = _PrepareLogInRecord();
+
+        fstream MyFile;
+        MyFile.open("LoginRegister.txt", ios::out | ios::app);
+
+        if (MyFile.is_open())
+        {
+
+            MyFile << stDataLine << endl;
+
+            MyFile.close();
+        }
+
     }
 };
 

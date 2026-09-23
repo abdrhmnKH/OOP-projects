@@ -36,7 +36,7 @@ public :
         string Title = "Add New Client.";
         _DrawScreenHeader(Title);
         string AccountNumber = "";
-
+        UserAndDate();
         cout << "\nPlease Enter Account Number: ";
         AccountNumber = clsInputValidate::ReadString();
         while (clsBankClient::IsClientExist(AccountNumber))
