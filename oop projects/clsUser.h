@@ -110,6 +110,7 @@ private :
 
         _SaveUsersDataToFile(_vUsers);
     }
+
 public :
     clsUser(enMode Mode, string FirstName, string LastName, string Email, string Phone, string UserName, string Password, int Permissions)
         :clsPerson(FirstName, LastName, Email, Phone) {
@@ -346,6 +347,23 @@ public :
     }
     static vector <clsUser> GetUsersList() {
         return _LoadUsersDataFromFile();
+    }
+    static enum _enPermissions {
+        prAllPermissions=-1,
+        prShowClientsList = 1, prAddNewClient = 2,
+        prDeleteClient = 4,
+        prUpdateClient = 8,
+        prFindClient = 16,
+        prTransaction = 32,
+        prManageUsers = 64
+    };
+    bool CheckUserPermission(_enPermissions Permission) {
+        if (this->Permissions== _enPermissions::prAllPermissions)
+            return true;
+        if ((this->Permissions & Permission) == Permission)
+            return true;
+        else
+            return false;
     }
 };
 

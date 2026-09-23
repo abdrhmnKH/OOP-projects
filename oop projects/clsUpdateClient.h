@@ -43,6 +43,9 @@ private :
     }
 public :
     static void UpdateClient() {
+        if (!CheckAccessRights(clsUser::_enPermissions::prUpdateClient)) {
+            return;
+        }
         string Title = "Update Client.";
         _DrawScreenHeader(Title);
         string AccountNumber = "";
