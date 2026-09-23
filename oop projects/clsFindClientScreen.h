@@ -31,6 +31,7 @@ public :
         string Title = "\tFind Client Screen";
         string AccountNumber = "";
         _DrawScreenHeader(Title);
+        UserAndDate();
         cout << "\nPlease Enter Account Number\n";
         AccountNumber = clsInputValidate::ReadString();
         while (!clsBankClient::IsClientExist(AccountNumber)) {

@@ -33,7 +33,7 @@ private :
 		clsFindUserScreen::FindUserScreen();
 	}
 	static void _MainMenuUserScreen() {
-		cout << "\nMain Menu Screen will be here\n";
+		
 	}
 	enum enManageUsersScreenOption { enListUsers = 1, enAddNewUser = 2, enDeleteUser = 3, enUpdateUser = 4 ,enFindUser=5,enMainMenu=6};
 	static void _PerformMainManuOption(enManageUsersScreenOption ManageUsersOption) {
@@ -77,6 +77,7 @@ public :
 		}
 		string Title = "   Manage Users Screen\n";
 		_DrawScreenHeader(Title);
+		UserAndDate();
 		cout << setw(37) << left << "" << "========================================================\n";
 		cout << setw(37) << left << "" << "\t\t\tManage Users Screen\n";
 		cout << setw(37) << left << "" << "========================================================\n";

@@ -56,6 +56,7 @@ public :
 		}
 		string Title = "\tTransaction Screeen\n";
 		_DrawScreenHeader(Title);
+		UserAndDate();
 		cout << setw(37) << left << "" << "========================================================\n";
 		cout << setw(37) << left << "" << "\t\t\tTransaction Menu\n";
 		cout << setw(37) << left << "" << "========================================================\n";

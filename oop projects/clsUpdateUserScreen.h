@@ -99,6 +99,7 @@ private :
         static void UpdateUser() {
             string Title = "\nUpdate User Screen.";
             _DrawScreenHeader(Title);
+            UserAndDate();
             string UserName = "";
             cout << "\n Please Enter User UserName\n";
             UserName = clsInputValidate::ReadString();

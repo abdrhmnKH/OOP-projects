@@ -105,6 +105,7 @@ public :
     {
         string Title = "Add New User.";
         _DrawScreenHeader(Title);
+        UserAndDate();
         string UserName = "";
 
         cout << "\nPlease Enter UserName: ";
