@@ -25,6 +25,9 @@ private :
     }
 public :
     static void FindClientScreen() {
+        if (!CheckAccessRights(clsUser::_enPermissions::prFindClient)) {
+            return;
+        }
         string Title = "\tFind Client Screen";
         string AccountNumber = "";
         _DrawScreenHeader(Title);

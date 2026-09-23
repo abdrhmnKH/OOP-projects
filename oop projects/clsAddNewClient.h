@@ -30,6 +30,9 @@ private :
 public :
     static void AddNewClient()
     {
+        if (!CheckAccessRights(clsUser::_enPermissions::prAddNewClient)) {
+            return;
+        }
         string Title = "Add New Client.";
         _DrawScreenHeader(Title);
         string AccountNumber = "";

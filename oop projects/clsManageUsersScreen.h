@@ -72,6 +72,9 @@ private :
 	}
 public :
 	static void ShowManageUsersInfo() {
+		if (!CheckAccessRights(clsUser::_enPermissions::prManageUsers)) {
+			return;
+		}
 		string Title = "   Manage Users Screen\n";
 		_DrawScreenHeader(Title);
 		cout << setw(37) << left << "" << "========================================================\n";

@@ -51,6 +51,9 @@ private :
 	}
 public : 
 	static void ShowTransactionMenu() {
+		if (!CheckAccessRights(clsUser::_enPermissions::prTransaction)) {
+			return;
+		}
 		string Title = "\tTransaction Screeen\n";
 		_DrawScreenHeader(Title);
 		cout << setw(37) << left << "" << "========================================================\n";

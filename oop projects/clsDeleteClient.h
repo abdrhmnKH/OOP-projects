@@ -25,6 +25,9 @@ private :
     }
 public :
    static void DeleteClient() {
+       if (!CheckAccessRights(clsUser::_enPermissions::prDeleteClient)) {
+           return;
+       }
         string Title = "Delete Client.";
         _DrawScreenHeader(Title);
         string AccountNumber = "";
