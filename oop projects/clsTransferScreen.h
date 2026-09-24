@@ -83,7 +83,7 @@ public:
 
         _PrintClient(SourceClient);
         _PrintClient(DestinationClient);
-
+        clsBankClient::RegisterLogIn(Amount,SourceClient, DestinationClient);
 
     }
 

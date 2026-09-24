@@ -3,6 +3,8 @@
 #include <string>
 #include "clsPerson.h"
 #include "clsString.h"
+#include "clsDate.h"
+#include "Global.h"
 #include <vector>
 #include <fstream>
 
@@ -168,7 +170,19 @@ private:
     {
         return clsBankClient(enMode::EmptyMode, "", "", "", "", "", "", 0);
     }
+    static string _PrepareTransferLogRecord(float amount,clsBankClient& SourceClient, clsBankClient& DestinationClient){
+        string Seperator = "#//#";
+        string TransferLogRecord = "";
+        TransferLogRecord += clsDate::GetSystemDateTimeString() + Seperator;
+        TransferLogRecord += SourceClient.AccountNumber() + Seperator;
+        TransferLogRecord += DestinationClient.AccountNumber() + Seperator;
+        TransferLogRecord += to_string(amount) + Seperator;
+        TransferLogRecord += to_string(SourceClient.AccountBalance) + Seperator;
+        TransferLogRecord += to_string(DestinationClient.AccountBalance) + Seperator;
+        TransferLogRecord += CurrentUser.UserName;
+        return TransferLogRecord;
 
+    }
 public:
     bool Delete()
     {
@@ -432,5 +446,26 @@ public:
         Withdraw(Amount);
         DestinationClient.Deposit(Amount);
         return true;
+    }
+    
+    struct stTransferLogRecord {
+        string DateTime, Amount, AccountNumberFrom, AccountNumberTo, UserName;
+    };
+    static void RegisterLogIn(float amount,clsBankClient & SourceClient,clsBankClient & DestinationClient)
+    {
+
+        string stDataLine = _PrepareTransferLogRecord(amount,SourceClient, DestinationClient);
+
+        fstream MyFile;
+        MyFile.open("TransferLog.txt", ios::out | ios::app);
+
+        if (MyFile.is_open())
+        {
+
+            MyFile << stDataLine << endl;
+
+            MyFile.close();
+        }
+
     }
 };
