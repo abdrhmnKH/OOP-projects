@@ -3,6 +3,7 @@
 #include <string>
 #include "clsPerson.h"
 #include "clsString.h"
+#include "clsUtil.h"
 #include <vector>
 #include <fstream>
 class clsUser : public clsPerson
@@ -14,13 +15,14 @@ private :
     string _Password;
     int _Permissions;
     bool _MarkedForDelete = false;
+    
     static clsUser _ConvertLinetoUserObject(string Line, string Seperator = "#//#")
     {
         vector<string> vUserData;
         vUserData = clsString::SplitString(Line, Seperator);
 
         return clsUser(enMode::UpdateMode, vUserData[0], vUserData[1], vUserData[2],
-            vUserData[3], vUserData[4], vUserData[5], stod(vUserData[6]));
+            vUserData[3], vUserData[4], clsUtil::DecryptText(vUserData[5]), stod(vUserData[6]));
 
     }
     static string _ConverUserObjectToLine(clsUser User, string Seperator = "#//#")
@@ -32,7 +34,7 @@ private :
         stUserRecord += User.Email + Seperator;
         stUserRecord += User.Phone + Seperator;
         stUserRecord += User.UserName + Seperator;
-        stUserRecord += User.Password + Seperator;
+        stUserRecord += clsUtil::EncryptText(User.Password) + Seperator;
         stUserRecord += to_string(User.Permissions);
 
         return stUserRecord;
@@ -119,7 +121,7 @@ private :
         vector <string> LoginRegisterDataLine = clsString::SplitString(Line, Seperator);
         LoginRegisterRecord.DateTime = LoginRegisterDataLine[0];
         LoginRegisterRecord.UserName = LoginRegisterDataLine[1];
-        LoginRegisterRecord.Password = LoginRegisterDataLine[2];
+        LoginRegisterRecord.Password = clsUtil::DecryptText(LoginRegisterDataLine[2]);
         LoginRegisterRecord.Permissions = stoi(LoginRegisterDataLine[3]);
 
         return LoginRegisterRecord;
@@ -418,7 +420,7 @@ public :
         string LoginRecord = "";
         LoginRecord += clsDate::GetSystemDateTimeString() + Seperator;
         LoginRecord += UserName + Seperator;
-        LoginRecord += Password + Seperator;
+        LoginRecord += clsUtil::EncryptText(Password) + Seperator;
         LoginRecord += to_string(Permissions);
         return LoginRecord;
     }
