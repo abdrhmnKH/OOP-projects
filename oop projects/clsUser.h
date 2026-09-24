@@ -402,7 +402,8 @@ public :
         prFindClient = 16,
         prTransaction = 32,
         prManageUsers = 64,
-        prLoginRegisterList=128
+        prLoginRegisterList=128,
+        prTransferLogList=256
     };
     bool CheckUserPermission(_enPermissions Permission) {
         if (this->Permissions== _enPermissions::prAllPermissions)
