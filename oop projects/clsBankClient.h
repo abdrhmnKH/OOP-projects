@@ -170,6 +170,24 @@ private:
     {
         return clsBankClient(enMode::EmptyMode, "", "", "", "", "", "", 0);
     }
+    struct stTransferLogRecord;
+    static stTransferLogRecord  _ConvertTransferLogLineToRecord(string Line, string Seperator = "#//#")
+    {
+        stTransferLogRecord TransferLogRecord;
+
+
+        vector <string> LoginRegisterDataLine = clsString::SplitString(Line, Seperator);
+        TransferLogRecord.DateTime = LoginRegisterDataLine[0];
+        TransferLogRecord.AccountNumberFrom = LoginRegisterDataLine[1];
+        TransferLogRecord.AccountNumberTo = LoginRegisterDataLine[2];
+        TransferLogRecord.Amount = LoginRegisterDataLine[3];
+        TransferLogRecord.AccountBalanceFrom = LoginRegisterDataLine[4];
+        TransferLogRecord.AccountBalanceTo = LoginRegisterDataLine[5];
+        TransferLogRecord.UserName = LoginRegisterDataLine[6];
+
+        return TransferLogRecord;
+
+    }
     static string _PrepareTransferLogRecord(float amount,clsBankClient& SourceClient, clsBankClient& DestinationClient){
         string Seperator = "#//#";
         string TransferLogRecord = "";
@@ -420,7 +438,34 @@ public:
         }
         }
     }
+    static vector <stTransferLogRecord> GetTransferLogList() {
+        vector <stTransferLogRecord> vTransferLogRecord;
 
+        fstream MyFile;
+        MyFile.open("TransferLog.txt", ios::in);//read Mode
+
+        if (MyFile.is_open())
+        {
+
+            string Line;
+
+            stTransferLogRecord TransferLogRecord;
+
+            while (getline(MyFile, Line))
+            {
+
+                TransferLogRecord = _ConvertTransferLogLineToRecord(Line);
+
+                vTransferLogRecord.push_back(TransferLogRecord);
+
+            }
+
+            MyFile.close();
+
+        }
+
+        return vTransferLogRecord;
+    }
     static bool IsClientExist(string AccountNumber)
     {
 
@@ -449,7 +494,7 @@ public:
     }
     
     struct stTransferLogRecord {
-        string DateTime, Amount, AccountNumberFrom, AccountNumberTo, UserName;
+        string DateTime, Amount, AccountNumberFrom, AccountNumberTo,AccountBalanceFrom,AccountBalanceTo,UserName;
     };
     static void RegisterLogIn(float amount,clsBankClient & SourceClient,clsBankClient & DestinationClient)
     {
