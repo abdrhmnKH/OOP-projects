@@ -405,7 +405,8 @@ public :
         prTransaction = 32,
         prManageUsers = 64,
         prLoginRegisterList=128,
-        prTransferLogList=256
+        prTransferLogList=256,
+        prCurrencyExchangeList=512
     };
     bool CheckUserPermission(_enPermissions Permission) {
         if (this->Permissions== _enPermissions::prAllPermissions)
