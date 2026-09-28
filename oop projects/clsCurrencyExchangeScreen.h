@@ -5,6 +5,7 @@
 #include "clsCurrenciesListScreen.h"
 #include "clsFindCurrencyScreen.h"
 #include "clsShowUpdateRateScreen.h"
+#include "clsCurrencyCalculatorScreen.h"
 class clsCurrencyExchangeScreen : protected clsScreen
 {
 private :
@@ -26,7 +27,7 @@ private :
 		clsShowUpdateRateScreen::ShowUpdateRateScreen();
 	}
 	static void _ShowCurrencyCalculator() {
-		//clsDepositScreen::ShowDepositScreen();
+		clsCurrencyCalculatorScreen::ShowCurrencyCalculatorScreen();
 	}
 	static void _PerformMainManuOption(enCurrencyExchangeOption CurrencyExchangeOption) {
 		switch (CurrencyExchangeOption) {
