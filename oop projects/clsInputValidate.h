@@ -15,6 +15,13 @@ public:
 		getline(cin >> ws, S1);
 		return S1;
 	}
+	template <typename T> T IsNumberBetween(T Number, T From, T To) {
+		if (Number >= From && Number <= To)
+			return true;
+		else
+			return false;
+
+	}
 	static bool IsNumberBetween(short Number, short From, short To)
 	{
 		if (Number >= From && Number <= To)
@@ -70,7 +77,16 @@ public:
 
 		return false;
 	}
+	template <typename T>T ReadNumber(string ErrorMessage = "Invalid Number, Enter again\n") {
+		T Number;
+		while (!(cin >> Number)) {
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cout << ErrorMessage;
+		}
+		return Number;
 
+	}
 	static int ReadIntNumber(string ErrorMessage = "Invalid Number, Enter again\n")
 	{
 		int Number;
@@ -90,6 +106,16 @@ public:
 		}
 		return Number;
 
+	}
+	template <typename T>T ReadNumberBetween(T From,T To, string ErrorMessage = "Number is not within range, Enter again:\n") {
+		T Number = ReadNumber();
+
+		while (!IsNumberBetween(Number, From, To))
+		{
+			cout << ErrorMessage;
+			Number = ReadNumber();
+		}
+		return Number;
 	}
 	static int ReadIntNumberBetween(int From, int To, string ErrorMessage = "Number is not within range, Enter again:\n")
 	{
